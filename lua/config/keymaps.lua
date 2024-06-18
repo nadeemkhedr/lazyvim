@@ -20,3 +20,11 @@ end, { silent = true, desc = "Open line diagnostics" })
 
 -- Git blame
 map("n", "<leader>gb", "<cmd>GitBlameToggle<cr>", { silent = true, desc = "Toggle git blame" })
+
+-- access .env file in the current git directory
+local open_env_file = function()
+  local dir = vim.fn.finddir(".git/..", vim.fn.expand("%:p:h") .. ";")
+  local file = vim.fn.findfile(".env", dir)
+  vim.cmd("e " .. vim.fn.fnameescape(file))
+end
+map("n", "<leader>oe", open_env_file, { desc = "Open env file in current git directory" })
