@@ -3,6 +3,13 @@ return {
   branch = "v3.x",
   cmd = "Neotree",
   opts = {
+    filesystem = {
+      filtered_items = {
+        hide_dotfiles = false,
+        hide_gitignored = true,
+        hide_by_name = { ".git" },
+      },
+    },
     window = {
       mappings = {
         ["/"] = "none",
