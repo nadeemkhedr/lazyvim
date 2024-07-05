@@ -28,3 +28,6 @@ local open_env_file = function()
   vim.cmd("e " .. vim.fn.fnameescape(file))
 end
 map("n", "<leader>oe", open_env_file, { desc = "Open env file in current git directory" })
+
+-- change word with <c-c>
+map({ "n", "x" }, "<C-c>", "<cmd>normal! ciw<cr>a")
