@@ -4,7 +4,7 @@ return {
     -- Obsidian
     keys = {
       {
-        "<leader>of",
+        "<leader>oo",
         function()
           require("telescope.builtin").find_files({
             cwd = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Mind",
@@ -13,7 +13,7 @@ return {
         desc = "Find Obsidian File",
       },
       {
-        "<leader>os",
+        "<leader>oO",
         function()
           require("telescope.builtin").live_grep({
             cwd = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Mind",
