@@ -8,3 +8,5 @@ vim.filetype.add({
     ["%.env.*"] = "sh",
   },
 })
+
+vim.g.root_spec = { { ".git", "lua" }, "lsp", "cwd" }
