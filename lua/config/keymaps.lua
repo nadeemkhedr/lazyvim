@@ -31,3 +31,15 @@ map("n", "<leader>oe", open_env_file, { desc = "Open env file in current git dir
 
 -- change word with <c-c>
 map({ "n", "x" }, "<C-c>", "<cmd>normal! ciw<cr>a")
+
+-- toggle quickfix window with c-q
+vim.cmd([[
+  function! QuickFixToggle()
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+      copen
+    else
+      cclose
+    endif
+  endfunction
+]])
+map("n", "<c-q>", ":call QuickFixToggle()<cr>")
