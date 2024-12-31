@@ -1,12 +1,13 @@
 return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    branch = "canary",
-    cmd = "CopilotChat",
-    opts = function()
-      return {
-        model = "gpt-4o",
-      }
-    end,
+    opts = {
+      mappings = {
+        reset = {
+          insert = "<c-x>",
+          normal = "<c-x>",
+        },
+      },
+    },
   },
 }
