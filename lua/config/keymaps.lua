@@ -43,3 +43,22 @@ vim.cmd([[
   endfunction
 ]])
 map("n", "<c-q>", ":call QuickFixToggle()<cr>")
+
+-- toggle background transparency
+local transparency_enabled = false
+local function toggle_transparency()
+  transparency_enabled = not transparency_enabled
+  if transparency_enabled then
+    vim.cmd([[
+      highlight Normal guibg=NONE ctermbg=NONE
+      highlight NormalNC guibg=NONE ctermbg=NONE
+      highlight NormalFloat guibg=NONE ctermbg=NONE
+      highlight FloatBorder guibg=NONE ctermbg=NONE
+      highlight SignColumn guibg=NONE ctermbg=NONE
+      highlight EndOfBuffer guibg=NONE ctermbg=NONE
+    ]])
+  else
+    vim.cmd.colorscheme(vim.g.colors_name)
+  end
+end
+map("n", "<leader>uT", toggle_transparency, { desc = "Toggle transparency" })
