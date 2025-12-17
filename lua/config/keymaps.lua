@@ -62,3 +62,11 @@ local function toggle_transparency()
   end
 end
 map("n", "<leader>uT", toggle_transparency, { desc = "Toggle transparency" })
+
+-- Option/Alt word movement (mac terminals often send <M-b>/<M-f>)
+vim.keymap.set({ "n", "v", "o" }, "<M-b>", "b", { silent = true })
+vim.keymap.set({ "n", "v", "o" }, "<M-f>", "w", { silent = true })
+
+-- In insert mode, move by word without leaving insert
+vim.keymap.set("i", "<M-b>", "<C-o>b", { silent = true })
+vim.keymap.set("i", "<M-f>", "<C-o>w", { silent = true })
