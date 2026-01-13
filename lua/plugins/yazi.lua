@@ -33,6 +33,13 @@ return {
       keymaps = {
         show_help = "<f1>",
       },
+      -- Add custom keymaps inside yazi terminal buffer
+      set_keymappings_function = function(yazi_buffer, config, context)
+        -- First apply the default keymaps
+        require("yazi.config").set_keymappings(yazi_buffer, config, context)
+        -- Add `-` to close yazi (sends `q` which is yazi's quit key)
+        vim.keymap.set("t", "-", "q", { buffer = yazi_buffer, desc = "Close yazi" })
+      end,
     },
     -- 👇 if you use `open_for_directories=true`, this is recommended
     init = function()
