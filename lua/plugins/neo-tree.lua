@@ -24,8 +24,8 @@ return {
       mappings = {
         ["/"] = "none",
         ["f"] = "fuzzy_finder",
-        ["<cr>"] = "open_with_window_picker",
-        ["o"] = "open",
+        ["<cr>"] = "open",
+        ["o"] = "open_with_window_picker",
       },
     },
   },
