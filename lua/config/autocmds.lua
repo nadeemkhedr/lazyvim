@@ -3,10 +3,15 @@
 -- Add any additional autocmds here
 
 -- Dim Neovim when tmux pane loses focus
+local bg_groups = { "Normal", "NeoTreeNormal", "NeoTreeNormalNC" }
+local cached_bgs = {}
+
 local function cache_theme_bg()
-  local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-  if normal.bg then
-    vim.g._theme_normal_bg = string.format("#%06x", normal.bg)
+  for _, group in ipairs(bg_groups) do
+    local hl = vim.api.nvim_get_hl(0, { name = group })
+    if hl.bg then
+      cached_bgs[group] = string.format("#%06x", hl.bg)
+    end
   end
 end
 
@@ -20,12 +25,18 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
 vim.api.nvim_create_autocmd("FocusGained", {
   callback = function()
-    vim.api.nvim_set_hl(0, "Normal", { bg = vim.g._theme_normal_bg })
+    for _, group in ipairs(bg_groups) do
+      if cached_bgs[group] then
+        vim.api.nvim_set_hl(0, group, { bg = cached_bgs[group] })
+      end
+    end
   end,
 })
 
 vim.api.nvim_create_autocmd("FocusLost", {
   callback = function()
-    vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+    for _, group in ipairs(bg_groups) do
+      vim.api.nvim_set_hl(0, group, { bg = "NONE" })
+    end
   end,
 })
