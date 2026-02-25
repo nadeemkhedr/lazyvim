@@ -3,7 +3,7 @@
 -- Add any additional autocmds here
 
 -- Dim Neovim when tmux pane loses focus
-local bg_groups = { "Normal", "NeoTreeNormal", "NeoTreeNormalNC" }
+local bg_groups = { "Normal", "NormalNC", "NeoTreeNormal", "NeoTreeNormalNC" }
 local cached_bgs = {}
 
 local function cache_theme_bg()
