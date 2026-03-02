@@ -21,7 +21,11 @@ return {
             return
           end
           local cwd = vim.fn.system("git rev-parse --show-toplevel"):gsub("%s+", "")
-          fzf.fzf_exec("git diff --name-only " .. base .. " HEAD", {
+          local cmd = string.format(
+            "{ git diff --name-only %s HEAD; git diff --name-only; git ls-files --others --exclude-standard; } | sort -u",
+            base
+          )
+          fzf.fzf_exec(cmd, {
             cwd = cwd,
             file_icons = true,
             color_icons = true,
